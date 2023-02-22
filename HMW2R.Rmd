@@ -1,0 +1,10 @@
+---
+title: "Homewor2R"
+author: "Samuel Mweni"
+date: "2/21/2023"
+output: word_document
+---
+
+```{r}
+
+```
