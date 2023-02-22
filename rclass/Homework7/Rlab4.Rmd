@@ -1,0 +1,154 @@
+---
+title: "LAB4 Multiple Linear Regression"
+author: "Samuel Mweni"
+date: "Stat 415/615 Regression, `r lubridate::year(Sys.Date())`"
+output:
+  word_document:
+    toc: yes
+    toc_depth: '1'
+  pdf_document:
+    toc: yes
+    toc_depth: 1
+    number_sections: yes
+urlcolor: blue
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,
+                      fig.align  = "center")
+```
+
+1  Commercial Property (polynomial and interactions)
+```{r}
+cpdata<-read.table("../homework7/CommercialProperty.txt", header=T)
+#cpdata
+head(cpdata, 3) # first 3 observations
+```
+```{r}
+tail(cpdata, 3) # last 3 observations
+```
+#1.1 Plot the data and comment. Also, get a numerical summary (mean,std.dev.) of all variables. Note that the mean of Age is 7.86.
+
+```{r}
+par(mfrow=c(2,3))
+for (i in 1:5) hist(cpdata[, i])
+summary(cpdata)
+```
+```{r}
+pairs(cpdata)
+```
+
+```{r}
+cor(cpdata)
+
+```
+#1.2 Follow the instruction in Problem 8.8 from the text, we will consider a regression model with predictors Age, Ageˆ2, Expense, and Square Footage.Fit the regression model.
+```{r}
+cpdata$CentAge<-cpdata$Age-mean(cpdata$Age)
+cpreg1 <- lm(RentalRates~Age+I(Age^2)+Expense+Sfootage, data=cpdata)
+summary(cpreg1)
+```
+#1.3 Add interaction terms to the previous model and examine their signifiance.
+
+```{r}
+cpreg2<-lm(RentalRates~Age+I(Age^2)+Expense+Sfootage
++ Age:Expense + Age:Sfootage, data=cpdata)
+summary(cpreg2)
+```
+
+```{r}
+# Using centered-variables.
+cpreg2b<-lm(RentalRates~CentAge+I(CentAge^2)+Expense+Sfootage
++ CentAge:Expense + CentAge:Sfootage, data=cpdata)
+cpreg2b
+
+```
+```{r}
+anova(cpreg1, cpreg2)
+
+```
+```{r}
+anova(cpreg1, cpreg2)
+
+```
+
+# 2 Example 2. Qualitative/Categorical Predictors and Interactions
+The data in file twins.txt and twins.sav are from a 1966 paper by Cyril Burt entitled “The genetic
+determination of differences in intelligence: A study of monozygotic twins reared apart”. The data consist of
+IQ scores for identical twins, one raised by foster parents, the other by the natural parents. We also know the
+social class of natural parents (high, middle or low). We are interested in predicting the IQ of the twin with
+foster parents from the IQ of the twin with the natural parents and the social class of natural parents.
+```{r}
+twindata<-read.table("../homework7/twins.txt", header=T)
+head(twindata, 2)
+
+```
+```{r}
+tail(twindata, 2)
+
+```
+
+```{r}
+# Covert status to factor to simplify future code.
+twindata$status <- as.factor(twindata$status)
+
+```
+2.1 Plot the data
+```{r}
+par(mfrow = c(1, 3))
+hist(twindata$IQF)
+hist(twindata$IQN)
+barplot(table(twindata$status))
+```
+```{r}
+plot(IQF ~ IQN, col=status, pch=14+as.numeric(status), data=twindata)
+legend(70, 130, legend=c("High", "Low", "Median"), col=c(1:3), pch=14+c(1:3))
+```
+# 2.3 Fit regression models.
+Recall that we converted the categorical variable status into a factor variable earlier. Hence it can be
+used in the lm() function directly. If a categorical predictor is not converted into a factor, you must use
+as.factor(status) inside the lm() function.
+
+
+```{r}
+twinreg<-lm(IQF~IQN+status, data=twindata)
+# twinreg<-lm(IQF~IQN+as.factor(status), data=twindata)
+summary(twinreg)
+```
+```{r}
+twinreg2<-lm(IQF~IQN+status+IQN:status, data=twindata)
+summary(twinreg2)
+```
+```{r}
+twinreg2<-lm(IQF~IQN+status+IQN:status, data=twindata)
+summary(twinreg2)
+```
+```{r}
+anova(twinreg, twinreg2)
+```
+
+```{r}
+twindata$baseH<-relevel(twindata$status, ref="h")
+twindata$baseM<-relevel(twindata$status, ref="m")
+twindata$baseL<-relevel(twindata$status, ref="l")
+as.factor(twindata$status)
+```
+```{r}
+twindata$baseH
+```
+
+```{r}
+twindata$baseM
+
+```
+
+```{r}
+twindata$baseL
+```
+```{r}
+twinreg.baseH <- lm(IQF~IQN+baseH, data=twindata)
+twinreg.baseM <- lm(IQF~IQN+baseM, data=twindata)
+twinreg.baseL <- lm(IQF~IQN+baseL, data=twindata)
+```
+
+#2.4 Interpret the regression coefficients in the context of the problem.
+the regression suggest that the child that was natured by a natural parent had a high IQ score compared to the other child.

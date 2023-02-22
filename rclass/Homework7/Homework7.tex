@@ -1,0 +1,445 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{lmodern}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  pdftitle={Homework7},
+  pdfauthor={Samuel Mweni},
+  colorlinks=true,
+  linkcolor={Maroon},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Homework7}
+\author{Samuel Mweni}
+\date{10/27/2022}
+
+\begin{document}
+\maketitle
+
+{
+\hypersetup{linkcolor=}
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\hypertarget{load-data}{%
+\section{load data}\label{load-data}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mmdata}\OtherTok{\textless{}{-}}\FunctionTok{read.table}\NormalTok{(}\StringTok{"../homework7/CH01PR27.txt"}\NormalTok{,}\AttributeTok{header =}\NormalTok{ F)}
+\FunctionTok{colnames}\NormalTok{(mmdata)}\OtherTok{\textless{}{-}}\FunctionTok{c}\NormalTok{(}\StringTok{"Y"}\NormalTok{,}\StringTok{"X"}\NormalTok{)}
+\FunctionTok{head}\NormalTok{(mmdata,}\DecValTok{3}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     Y  X
+## 1 106 43
+## 2 106 41
+## 3  97 47
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# tail check}
+\FunctionTok{tail}\NormalTok{(mmdata,}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##     Y  X
+## 59 70 72
+## 60 74 76
+\end{verbatim}
+
+\hypertarget{a-fit-regression-model-8.2.-plot-the-fitted-regression-function-and-the-data.-does-the-quadratic}{%
+\section{a) Fit regression model (8.2). Plot the fitted regression
+function and the data. Does the
+quadratic}\label{a-fit-regression-model-8.2.-plot-the-fitted-regression-function-and-the-data.-does-the-quadratic}}
+
+\#regression function appear to be a good fit here? Find R2.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#center the variables}
+\NormalTok{t}\OtherTok{\textless{}{-}}\NormalTok{(mmdata}\SpecialCharTok{$}\NormalTok{X}\SpecialCharTok{{-}}\FunctionTok{mean}\NormalTok{(mmdata}\SpecialCharTok{$}\NormalTok{X))}
+\NormalTok{t\_power}\OtherTok{\textless{}{-}}\NormalTok{ t}\SpecialCharTok{\^{}}\DecValTok{2}
+\NormalTok{mmdata}\OtherTok{\textless{}{-}}\FunctionTok{cbind}\NormalTok{(mmdata,t,t\_power)}
+
+\NormalTok{mmdata.reg}\OtherTok{=}\FunctionTok{lm}\NormalTok{(Y}\SpecialCharTok{\textasciitilde{}}\NormalTok{t }\SpecialCharTok{+}\NormalTok{ t\_power,}\AttributeTok{data =}\NormalTok{ mmdata)}
+\NormalTok{mmdata.reg}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = Y ~ t + t_power, data = mmdata)
+## 
+## Coefficients:
+## (Intercept)            t      t_power  
+##    82.93575     -1.18396      0.01484
+\end{verbatim}
+
+Fit the regression model 8.2 Y\_hat = 82.93575-1.18396x +0.01484
+
+plot the fitted regression function and data
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(mmdata}\SpecialCharTok{$}\NormalTok{t,mmdata}\SpecialCharTok{$}\NormalTok{Y,}\AttributeTok{main=}\StringTok{"Quadratic Model"}\NormalTok{,}\AttributeTok{xlab=}\StringTok{"X(centered)"}\NormalTok{,}\AttributeTok{ylab=}\StringTok{"Y"}\NormalTok{,}\AttributeTok{pch=}\DecValTok{19}\NormalTok{)}
+\NormalTok{x}\OtherTok{=}\FunctionTok{seq}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{20}\NormalTok{,}\DecValTok{20}\NormalTok{,}\AttributeTok{by =}\NormalTok{.}\DecValTok{1}\NormalTok{)}
+\NormalTok{y}\OtherTok{=}\FloatTok{82.93575{-}1.18396}\SpecialCharTok{*}\NormalTok{x}\FloatTok{+0.01484}\SpecialCharTok{*}\NormalTok{x}\SpecialCharTok{\^{}}\DecValTok{2}
+\FunctionTok{lines}\NormalTok{(x,y,}\AttributeTok{col=}\StringTok{"blue"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{center}\includegraphics{Homework7_files/figure-latex/unnamed-chunk-4-1} \end{center}
+
+Does the quadratic appears to be a good fit?
+
+Yes it is a good fit
+
+Find R² R²= 0.7632
+
+\hypertarget{summary}{%
+\section{summary}\label{summary}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(mmdata.reg)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = Y ~ t + t_power, data = mmdata)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -15.086  -6.154  -1.088   6.220  20.578 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(>|t|)    
+## (Intercept) 82.935749   1.543146  53.745   <2e-16 ***
+## t           -1.183958   0.088633 -13.358   <2e-16 ***
+## t_power      0.014840   0.008357   1.776   0.0811 .  
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 8.026 on 57 degrees of freedom
+## Multiple R-squared:  0.7632, Adjusted R-squared:  0.7549 
+## F-statistic: 91.84 on 2 and 57 DF,  p-value: < 2.2e-16
+\end{verbatim}
+
+\hypertarget{test-whether-or-not-there-is-a-regression-relation-use-.05.-state-the-alternatives-decisionrule-and-conclusion.}{%
+\section{Test whether or not there is a regression relation; use ()\{ =
+.05. State the alternatives, decisionrule, and
+conclusion.}\label{test-whether-or-not-there-is-a-regression-relation-use-.05.-state-the-alternatives-decisionrule-and-conclusion.}}
+
+Hypothesis H0 : β1 = β11,= 0,Ha :not both β1 and β11 = 0. Decision rule,
+and conclusion: -we reject Ho If p\_value is \textless{} alpha
+
+conclusion , we reject the Ho in this case because p\_value (2.2e-16) is
+less than 0.05.there is sufficient evidence to indicate that a
+regression relation exist between muscle mass and the centered age
+variable and its squared value .
+
+\#-Estimate the mean muscle mass for women aged 48 years; use a 95
+percent confidenceinterval. Interpret your interval.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mmdata.reg2}\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(Y}\SpecialCharTok{\textasciitilde{}}\NormalTok{X,}\AttributeTok{data =}\NormalTok{ mmdata)}
+\FunctionTok{predict}\NormalTok{(mmdata.reg2,}\FunctionTok{list}\NormalTok{(}\AttributeTok{X=}\DecValTok{48}\NormalTok{),}\AttributeTok{se.fit =}\NormalTok{T,}\AttributeTok{interval =}\StringTok{"confidence"}\NormalTok{,}\AttributeTok{level=}\FloatTok{0.95}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $fit
+##        fit      lwr      upr
+## 1 99.22678 96.20318 102.2504
+## 
+## $se.fit
+## [1] 1.510501
+## 
+## $df
+## [1] 58
+## 
+## $residual.scale
+## [1] 8.173177
+\end{verbatim}
+
+From the out above , the std.err. for Y\_hat(mean) is 1.510501.The 95\%
+CI for Ymean is :Yhat+-t(df=45-2,1-alpha/2) x se(yhat\_mean).Putting the
+values to the formula the 90\% CI is:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tcrit}\OtherTok{\textless{}{-}}\FunctionTok{qt}\NormalTok{(}\FloatTok{0.975}\NormalTok{,}\AttributeTok{df=}\DecValTok{57}\NormalTok{)}
+\FunctionTok{c}\NormalTok{(}\FloatTok{99.22678}\SpecialCharTok{{-}}\NormalTok{tcrit}\SpecialCharTok{*}\FloatTok{1.510501}\NormalTok{,}\FloatTok{99.22678}\SpecialCharTok{+}\NormalTok{tcrit}\SpecialCharTok{*}\FloatTok{1.510501}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  96.20205 102.25151
+\end{verbatim}
+
+At confidence level of 95\%, the estimate mean musle mass for women aged
+48 years is
+
+96.20205 ≤ E(Yh)≤ 102.25151
+
+\#d Predict the muscle mass for a woman whose age is 48 years; use a 95
+percent prediction interval. Interpret your interval.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mmdata.reg2}\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(Y}\SpecialCharTok{\textasciitilde{}}\NormalTok{X,}\AttributeTok{data =}\NormalTok{ mmdata)}
+\FunctionTok{predict}\NormalTok{(mmdata.reg2,}\FunctionTok{list}\NormalTok{(}\AttributeTok{X=}\DecValTok{48}\NormalTok{),}\AttributeTok{se.fit =}\NormalTok{T,}\AttributeTok{interval =}\StringTok{"prediction"}\NormalTok{,}\AttributeTok{level=}\FloatTok{0.95}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $fit
+##        fit      lwr      upr
+## 1 99.22678 82.58934 115.8642
+## 
+## $se.fit
+## [1] 1.510501
+## 
+## $df
+## [1] 58
+## 
+## $residual.scale
+## [1] 8.173177
+\end{verbatim}
+
+From the output above Yhat\_mean=99.22678 and the std.err for yhat\_mean
+is 1.510501. to compute the standard error of the individual prediction
+
+se(yhat\_mean)=√(se(yhat\_mean))\^{}2 +MSE)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{se\_EY\_new }\OtherTok{\textless{}{-}}\NormalTok{(}\FunctionTok{sqrt}\NormalTok{((}\FloatTok{1.510501}\NormalTok{)}\SpecialCharTok{\^{}}\DecValTok{2}\SpecialCharTok{+}\NormalTok{(}\FloatTok{8.173177}\NormalTok{)}\SpecialCharTok{\^{}}\DecValTok{2}\NormalTok{))}
+\NormalTok{se\_EY\_new}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 8.311584
+\end{verbatim}
+
+so, by inserting the values to the formula at 95\% PI is;
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tcrit}\OtherTok{\textless{}{-}}\FunctionTok{qt}\NormalTok{(}\FloatTok{0.975}\NormalTok{,}\AttributeTok{df=}\DecValTok{57}\NormalTok{)}
+\FunctionTok{c}\NormalTok{(}\FloatTok{99.22678}\SpecialCharTok{{-}}\NormalTok{tcrit}\SpecialCharTok{*}\FloatTok{8.311584}\NormalTok{,}\FloatTok{99.22678}\SpecialCharTok{+}\NormalTok{tcrit}\SpecialCharTok{*}\FloatTok{8.311584}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  82.58312 115.87044
+\end{verbatim}
+
+At confidence level of 95\%, the predic mass for a woman aged 48 years
+is
+
+82.58312 ≤ E(Yh)≤ 115.87044
+
+\hypertarget{e-test-whether-the-quadratic-term-can-be-dropped-from-the-regression-model-use-.05.state-the-alternatives-decision-rule-and-conclusion.}{%
+\section{e) Test whether the quadratic term can be dropped from the
+regression model; use ()\{ = .05.State the alternatives, decision rule,
+and
+conclusion.}\label{e-test-whether-the-quadratic-term-can-be-dropped-from-the-regression-model-use-.05.state-the-alternatives-decision-rule-and-conclusion.}}
+
+Full regression model: Y\_hat = 82.93575-1.18396x +0.01484x²
+
+Hypothesis
+
+H0 : β1 =0 Ha :β11≠ 0
+
+Reduced model
+
+yhat =82.93575-1.18396x +0*x²
+
+yhat =82.93575-1.18396x
+
+Partial F-test
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mmdata.full.reg}\OtherTok{=}\FunctionTok{lm}\NormalTok{(Y}\SpecialCharTok{\textasciitilde{}}\NormalTok{t}\SpecialCharTok{+}\NormalTok{t\_power,}\AttributeTok{data =}\NormalTok{mmdata)}
+\NormalTok{mmdata.reduced.reg}\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(Y}\SpecialCharTok{\textasciitilde{}}\NormalTok{t,}\AttributeTok{data =}\NormalTok{ mmdata)}
+\FunctionTok{anova}\NormalTok{(mmdata.reduced.reg,mmdata.full.reg)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Analysis of Variance Table
+## 
+## Model 1: Y ~ t
+## Model 2: Y ~ t + t_power
+##   Res.Df    RSS Df Sum of Sq      F  Pr(>F)  
+## 1     58 3874.4                              
+## 2     57 3671.3  1    203.13 3.1538 0.08109 .
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+We obtain our SSE from the anova table output
+
+THE F-PARTIAL =(SSE(R)-SSE(F)/(dfe(R)-dfe(f)))/(SSE(F)/dfe(F))
+
+\begin{verbatim}
+      =(203.13)/(58-57)/3671.3/57
+      
+      =3.153763
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{F\_partial}\OtherTok{\textless{}{-}}\NormalTok{((}\FloatTok{203.13}\NormalTok{)}\SpecialCharTok{/}\NormalTok{(}\DecValTok{1}\NormalTok{)}\SpecialCharTok{/}\NormalTok{(}\FloatTok{3671.3}\SpecialCharTok{/}\DecValTok{57}\NormalTok{))}
+\NormalTok{F\_partial}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3.153763
+\end{verbatim}
+
+The P-value calculation
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p\_value}\OtherTok{\textless{}{-}}\DecValTok{1}\SpecialCharTok{{-}}\FunctionTok{pf}\NormalTok{(}\FloatTok{3.153763}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{57}\NormalTok{)}
+\NormalTok{p\_value}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.08108997
+\end{verbatim}
+
+p-value =P(F(df1=dfe(R)-dfe(F),df2=dfe(F))) \textgreater Fpartial)
+=P(F(df1=1,df2=57)\textgreater3.153763)=0.08108997
+
+Decision rule
+
+Reject Ho if p-value \textless{} alpha(0.025)
+
+Statistical conclusion
+
+since p-value (0.08108997) is greater than alpha (0.025),we do not
+reject Ho . Therefore ,we do not have signficant evidence to support
+that x² is needed in the model ,so x² can be dropped from the model when
+x is in the model.
+
+\bigskip
+\begin{center}
+\textbf{---- This is the end of Lab 2. ----}
+\end{center}
+
+\end{document}
