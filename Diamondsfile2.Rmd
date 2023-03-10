@@ -1,0 +1,14 @@
+---
+title: "Diamomds"
+author: "samuel"
+date: "2023-03-08"
+output: html_document
+---
+
+```{r}
+library(tidyverse)
+library(dplyr)
+diamonds%>%
+  select(price,color)
+```
+
